@@ -3,7 +3,8 @@ import 'package:personal_expenses/widgets/new_transaction.dart';
 
 import './models/transaction.dart';
 import './utils/theme.dart';
-import './widgets/body.dart';
+import './widgets/chart/chart.dart';
+import './widgets/transaction_list.dart';
 
 void main() {
   runApp(MyApp());
@@ -64,20 +65,35 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final AppBar appBar = AppBar(
+      title: Text('Personal Expenses'),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _startAddNewTx(context),
+        ),
+      ],
+    );
+
+    final double _height = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        appBar.preferredSize.height;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Personal Expenses'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _startAddNewTx(context),
-          ),
-        ],
-      ),
-      body: Body(
-        recentTransactions: _recentTxs,
-        transactions: _txs,
-        deleteTx: _deleteTx,
+      appBar: appBar,
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: _height * 0.3,
+              child: Chart(_recentTxs),
+            ),
+            Container(
+              height: _height * 0.7,
+              child: TransactionList(_txs, _deleteTx),
+            ),
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
