@@ -14,9 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Personal Expenses App',
       home: MyHomePage(),
-      theme: myTheme(),
+      theme: ThemeData.dark(),
     );
   }
 }
@@ -66,10 +67,18 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final AppBar appBar = AppBar(
-      title: Text('Personal Expenses'),
+      backgroundColor: Colors.tealAccent,
+      title: Text(
+        'Personal Expenses',
+        style: TextStyle(
+            color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+      ),
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.add),
+          icon: Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
           onPressed: () => _startAddNewTx(context),
         ),
       ],

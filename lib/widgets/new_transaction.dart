@@ -49,7 +49,10 @@ class _NewTransactionState extends State<NewTransaction> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(labelText: 'Title'),
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                labelText: 'Title',
+              ),
               controller: _titleController,
               onSubmitted: (_) => _submitData(),
             ),
@@ -72,7 +75,10 @@ class _NewTransactionState extends State<NewTransaction> {
                   ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
-                    child: Text('Choose Date'),
+                    child: Text(
+                      'Choose Date',
+                      style: TextStyle(color: Colors.white),
+                    ),
                     onPressed: _presentDatePicker,
                   )
                 ],
@@ -81,7 +87,10 @@ class _NewTransactionState extends State<NewTransaction> {
             RaisedButton(
               color: Theme.of(context).primaryColor,
               textColor: Theme.of(context).textTheme.button.color,
-              child: Text('Add Transaction'),
+              child: Text(
+                'Add Transaction',
+                style: TextStyle(color: Colors.tealAccent),
+              ),
               onPressed: _submitData,
             ),
           ],
